@@ -5,7 +5,7 @@ exports.handler = async (event) => {
     `https://www.reddit.com/user/${username}/submitted/.json?limit=${100}`,
     {
       headers: {
-        "user-agent":
+        "User-Agent":
           "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Mobile Safari/537.36",
       },
     }

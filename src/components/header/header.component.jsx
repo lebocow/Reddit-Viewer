@@ -6,7 +6,7 @@ const Header = () => {
   const [images, setImages] = useState([]);
 
   const fetchImages = async () => {
-    const response = await fetch("/.netlify/functions/fetch-images", {
+    return await fetch("/.netlify/functions/fetch-images", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
