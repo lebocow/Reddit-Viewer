@@ -15,7 +15,7 @@ exports.handler = async (event) => {
 
     const data = response.data;
     const posts = data.data.children;
-    images = posts
+    const images = posts
       .map((post) => {
         if (
           post.data.url.endsWith(".jpg") ||
@@ -28,7 +28,7 @@ exports.handler = async (event) => {
 
     return {
       statusCode: 200,
-      body: JSON.stringify(data),
+      body: JSON.stringify(images),
     };
   } catch (error) {
     return {

@@ -22,8 +22,8 @@ const Header = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    const data = await fetchImages();
-    console.log(data);
+    const images = await fetchImages();
+    console.log(images);
   };
 
   return (
