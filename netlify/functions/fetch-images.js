@@ -15,16 +15,16 @@ exports.handler = async (event) => {
 
     const data = response.data;
     const posts = data.data.children;
-    // images = posts
-    //   .map((post) => {
-    //     if (
-    //       post.data.url.endsWith(".jpg") ||
-    //       post.data.url.endsWith(".png") ||
-    //       post.data.url.endsWith(".gifv")
-    //     )
-    //       return post.data.url;
-    //   })
-    //   .filter((image) => image !== undefined);
+    images = posts
+      .map((post) => {
+        if (
+          post.data.url.endsWith(".jpg") ||
+          post.data.url.endsWith(".png") ||
+          post.data.url.endsWith(".gifv")
+        )
+          return post.data.url;
+      })
+      .filter((image) => image !== undefined);
 
     return {
       statusCode: 200,
