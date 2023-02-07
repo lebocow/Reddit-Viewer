@@ -28,7 +28,7 @@ exports.handler = async (event) => {
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ images }),
+      body: images,
     };
   } catch (error) {
     return {
