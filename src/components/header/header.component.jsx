@@ -1,19 +1,12 @@
-import { useState } from "react";
+import { useContext } from "react";
 import RedditLogo from "../../assets/logo-reddit.svg";
+import { InputContext } from "../../contexts/input.context";
+import { UserDataContext } from "../../contexts/userData.context";
+import { fetchUserData } from "../../utils/fetchUserData.utils";
 
 const Header = () => {
-  const [searchInput, setSearchInput] = useState("");
-  const [images, setImages] = useState([]);
-
-  const fetchImages = async () => {
-    return await fetch("/.netlify/functions/fetch-images", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username: searchInput }),
-    }).then((res) => res.json());
-  };
+  const { searchInput, setSearchInput } = useContext(InputContext);
+  const { setCurrentData } = useContext(UserDataContext);
 
   const onChangeHandler = (e) => {
     const input = e.target.value;
@@ -22,8 +15,8 @@ const Header = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    const images = await fetchImages();
-    console.log(images);
+    const data = await fetchUserData(searchInput);
+    setCurrentData(data);
   };
 
   return (
@@ -32,7 +25,7 @@ const Header = () => {
       <div className="flex justify-center items-center w-full">
         <form onSubmit={submitHandler}>
           <input
-            className="text-center border rounded-xl w-96 "
+            className="text-center rounded-xl w-96 outline-none"
             type="search"
             placeholder="u/username"
             onChange={onChangeHandler}

@@ -14,21 +14,10 @@ exports.handler = async (event) => {
     );
 
     const data = response.data;
-    const posts = data.data.children;
-    const images = posts
-      .map((post) => {
-        if (
-          post.data.url.endsWith(".jpg") ||
-          post.data.url.endsWith(".png") ||
-          post.data.url.endsWith(".gifv")
-        )
-          return post.data.url;
-      })
-      .filter((image) => image !== undefined);
 
     return {
       statusCode: 200,
-      body: JSON.stringify(images),
+      body: JSON.stringify(data),
     };
   } catch (error) {
     return {
