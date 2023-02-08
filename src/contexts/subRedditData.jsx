@@ -1,29 +1,29 @@
 import { createContext, useEffect, useState } from "react";
 
-export const UserDataContext = createContext({
-  userData: {},
-  setCurrentData: () => {},
-  userImages: [],
-  setUserImages: () => null,
+export const SubRedditDataContext = createContext({
+  subData: {},
+  setSubData: () => {},
+  subImages: [],
+  setSubImages: () => null,
   imagesToShow: 3,
   setImagesToShow: () => null,
 });
 
-export const UserDataProvider = ({ children }) => {
-  const [userData, setCurrentData] = useState({});
-  const [userImages, setUserImages] = useState([]);
+export const SubRedditProvider = ({ children }) => {
+  const [subData, setSubData] = useState({});
+  const [subImages, setSubImages] = useState([]);
   const [imagesToShow, setImagesToShow] = useState(3);
 
   const value = {
-    userData,
-    setCurrentData,
-    userImages,
+    subData,
+    setSubData,
+    subImages,
     imagesToShow,
     setImagesToShow,
   };
 
   useEffect(() => {
-    const posts = userData && userData.data && userData.data.children;
+    const posts = subData && subData.data && subData.data.children;
     if (!posts) return;
     const images = Array.isArray(posts)
       ? [
@@ -32,8 +32,7 @@ export const UserDataProvider = ({ children }) => {
               .map((post) => {
                 if (
                   post.data.url.endsWith(".jpg") ||
-                  post.data.url.endsWith(".png") ||
-                  post.data.url.endsWith(".gifv")
+                  post.data.url.endsWith(".png")
                 )
                   return post.data.url;
               })
@@ -42,13 +41,13 @@ export const UserDataProvider = ({ children }) => {
         ]
       : [];
 
-    setUserImages(images);
+    setSubImages(images);
     setImagesToShow(3);
-  }, [userData]);
+  }, [subData]);
 
   return (
-    <UserDataContext.Provider value={value}>
+    <SubRedditDataContext.Provider value={value}>
       {children}
-    </UserDataContext.Provider>
+    </SubRedditDataContext.Provider>
   );
 };

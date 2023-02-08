@@ -2,15 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { InputProvider } from "./contexts/input.context";
-import { UserDataProvider } from "./contexts/userData.context";
+import { SubRedditProvider } from "./contexts/subRedditData";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <UserDataProvider>
+    <SubRedditProvider>
       <InputProvider>
         <App />
       </InputProvider>
-    </UserDataProvider>
+    </SubRedditProvider>
   </React.StrictMode>
 );

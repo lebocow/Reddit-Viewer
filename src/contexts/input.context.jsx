@@ -1,12 +1,12 @@
 import { createContext, useState } from "react";
 
 export const InputContext = createContext({
-  searchInput: "",
+  searchInput: "aww",
   setSearchInput: () => null,
 });
 
 export const InputProvider = ({ children }) => {
-  const [searchInput, setSearchInput] = useState("");
+  const [searchInput, setSearchInput] = useState("aww");
   const value = { searchInput, setSearchInput };
 
   return (

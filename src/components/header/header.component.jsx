@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import RedditLogo from "../../assets/logo-reddit.svg";
 import { InputContext } from "../../contexts/input.context";
-import { UserDataContext } from "../../contexts/userData.context";
-import { fetchUserData } from "../../utils/fetchUserData.utils";
+import { SubRedditDataContext } from "../../contexts/subRedditData";
+import { fetchSubRedditData } from "../../utils/fetchSubRedditData.utils";
 
 const Header = () => {
   const { searchInput, setSearchInput } = useContext(InputContext);
-  const { setCurrentData } = useContext(UserDataContext);
+  const { setSubData } = useContext(SubRedditDataContext);
 
   const onChangeHandler = (e) => {
     const input = e.target.value;
@@ -15,8 +15,8 @@ const Header = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    const data = await fetchUserData(searchInput);
-    setCurrentData(data);
+    const data = await fetchSubRedditData(searchInput);
+    setSubData(data);
   };
 
   return (
@@ -27,7 +27,7 @@ const Header = () => {
           <input
             className="text-center rounded-xl w-96 outline-none"
             type="search"
-            placeholder="u/username"
+            placeholder="r/subreddit"
             onChange={onChangeHandler}
             value={searchInput}
           />

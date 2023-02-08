@@ -1,10 +1,10 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { UserDataContext } from "../../contexts/userData.context";
+import { SubRedditDataContext } from "../../contexts/subRedditData";
 import PhotoCard from "../photoCard/photoCard.component";
 
 const Body = () => {
-  const { userImages, imagesToShow, setImagesToShow } =
-    useContext(UserDataContext);
+  const { subImages, imagesToShow, setImagesToShow } =
+    useContext(SubRedditDataContext);
   const observerRef = useRef(null);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const Body = () => {
   return (
     <div className="p-7">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        {userImages.slice(0, imagesToShow).map((image) => (
+        {subImages.slice(0, imagesToShow).map((image) => (
           <PhotoCard key={image} image={image} />
         ))}
         <div className="observe-me" />

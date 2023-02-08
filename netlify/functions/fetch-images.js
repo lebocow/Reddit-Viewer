@@ -1,11 +1,11 @@
 const axios = require("axios");
 
 exports.handler = async (event) => {
-  const { username } = JSON.parse(event.body);
+  const { subreddit } = JSON.parse(event.body);
 
   try {
     const response = await axios.get(
-      `https://www.reddit.com/user/${username}/submitted/.json?limit=${100}`,
+      `https://www.reddit.com/r/${subreddit}/.json?limit=${100}`,
       {
         headers: {
           "User-Agent": "MyBot/0.0.1",
