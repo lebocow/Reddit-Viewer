@@ -1,19 +1,19 @@
-import { useContext } from "react";
+import React, { ChangeEvent, useContext } from "react";
 import RedditLogo from "../../assets/logo-reddit.svg";
 import { InputContext } from "../../contexts/input.context";
-import { SubRedditDataContext } from "../../contexts/subRedditData";
+import { SubRedditDataContext } from "../../contexts/subRedditData.context";
 import { fetchSubRedditData } from "../../utils/fetchSubRedditData.utils";
 
 const Header = () => {
   const { searchInput, setSearchInput } = useContext(InputContext);
   const { setSubData } = useContext(SubRedditDataContext);
 
-  const onChangeHandler = (e) => {
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value;
     setSearchInput(input);
   };
 
-  const submitHandler = async (e) => {
+  const submitHandler = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = await fetchSubRedditData(searchInput);
     setSubData(data);
