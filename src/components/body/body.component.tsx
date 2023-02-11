@@ -13,7 +13,6 @@ const Body: FC = () => {
         (entries) => {
           if (entries[0].isIntersecting) {
             setImagesToShow((prevValue) => prevValue + 4);
-            console.log(`Hey`);
           }
         },
         {
